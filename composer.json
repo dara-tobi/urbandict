@@ -1,0 +1,45 @@
+{
+    "name": "league/urbandict",
+    "description": "Dictionary of common modern slangs",
+    "keywords": [
+        "league",
+        "urbandict",
+        "dictionary",
+        "slang"
+    ],
+    "homepage": "https://github.com/andela-doladosu/urbandict",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dara Oladosu",
+            "email": "dara.oladosu@andela.com",
+            "homepage": "http://github.com/andela-doladosu",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=5.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*",
+        "scrutinizer/ocular": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "League\\UrbanDict\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "League\\UrbanDict\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
