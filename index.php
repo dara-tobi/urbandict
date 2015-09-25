@@ -38,21 +38,22 @@ include('src/DictStore.php');
    <div id="container">
      <div id="workspace">
       <?php
+        $handler = new DictTool();
         $dictionary = new DictStore();
         echo 'Get  <br/>';
-        $get = DictTool::getSlang($dictionary,'crash');
+        $get = $handler->getSlang($dictionary,'crash');
         var_dump($get);
         echo "<hr />";
         echo 'Add <br/>';
-        $add = DictTool::addSlang($dictionary,'jump','To run from the police','Tunde will jump despite the warwning from the judge');
+        $add = $handler->addSlang($dictionary,'jump','To run from the police','Tunde will jump despite the warwning from the judge');
         var_dump($add);
         echo "<hr />";
         echo 'Edit <br/>';
-        $edit = DictTool::editSlang($dictionary,'tight','A very impressive performance');
+        $edit = $handler->editSlang($dictionary,'tight','A very impressive performance');
         var_dump($edit);
         echo "<hr />";
         echo 'Delete <br/>';
-        $delete = DictTool::deleteSlang($dictionary,'tight');
+        $delete = $handler->deleteSlang($dictionary,'tight');
         var_dump($delete);  
       ?>
      </div>

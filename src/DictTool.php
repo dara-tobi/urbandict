@@ -15,10 +15,10 @@ class DictTool
    * 
    * @return stdClass  $slang     Slang index, meaning and it's sample sentence        
    */
-  private static function find(DictStore $dictStore, $needle)
+  private function find(DictStore $dictStore, $needle)
   {
     $dictionary = $dictStore->dictData;
-    $checkSlangExists = self::search($dictionary, $needle);
+    $checkSlangExists = $this->search($dictionary, $needle);
 
     if ($checkSlangExists === false) {
       return false;
@@ -41,9 +41,9 @@ class DictTool
    * 
    * @return String   $result Definition of the slang being searched for
    */
-  public static function getSlang(DictStore $dictStore, $slang = null)
+  public function getSlang(DictStore $dictStore, $slang = null)
   {
-    $searchResult = self::find($dictStore, $slang);
+    $searchResult = $this->find($dictStore, $slang);
     if ($searchResult === false) {
       $result =  'No definition found for \''.$slang.'\'';
       return $result;
@@ -66,7 +66,7 @@ class DictTool
    * 
    * @return Array     $dictionary  Modified array with the new slang added
    */
-  private static function populateDictionary(DictStore $dictStore, $slang = null, $definition = null, $example = null) 
+  private function populateDictionary(DictStore $dictStore, $slang = null, $definition = null, $example = null) 
   {
     if ($slang == null || $definition == null || $example == null) {
       return "Not enough arguments!";
@@ -93,12 +93,12 @@ class DictTool
    *
    * @return DictStore $dictStore  DictStore instance to which the intended slang has been added
    */
-  public static function addSlang(DictStore $dictStore, $slang = null, $definition = null, $example = null)
+  public function addSlang(DictStore $dictStore, $slang = null, $definition = null, $example = null)
   {
-    if (self::find($dictStore, $slang) !== false) {
+    if ($this->find($dictStore, $slang) !== false) {
       return 'Slang already exists';
     } else {
-      $dictStore = self::populateDictionary($dictStore, $slang, $definition, $example);
+      $dictStore = $this->populateDictionary($dictStore, $slang, $definition, $example);
       return $dictStore;
     }
   }
@@ -113,10 +113,10 @@ class DictTool
    * @return DictStore $dictStore DictStore instance from which the intended slang has been deleted
    *
    */
-  public static function deleteSlang(DictStore $dictStore, $slang)
+  public function deleteSlang(DictStore $dictStore, $slang)
   {
-    $dictCheck = self::find($dictStore, $slang);
-    if (self::find($dictStore, $slang) !== false) {
+    $dictCheck = $this->find($dictStore, $slang);
+    if ($this->find($dictStore, $slang) !== false) {
       unset($dictStore->dictData[$dictCheck->index]);
       return $dictStore;
     }
@@ -133,9 +133,9 @@ class DictTool
    * 
    * @return DictStore $dictStore DictStore instance in which the intended slang has been edited
    */
-  public static function editSlang(DictStore $dictStore, $slang, $newMeaning)
+  public function editSlang(DictStore $dictStore, $slang, $newMeaning)
   {
-    $dictCheck = self::find($dictStore, $slang);
+    $dictCheck = $this->find($dictStore, $slang);
     if ($dictCheck !== false) {
       $dictStore->dictData[$dictCheck->index]['description'] = $newMeaning;
       return $dictStore;
