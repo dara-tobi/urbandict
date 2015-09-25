@@ -51,5 +51,19 @@ class DictTool
       return '\''.$slang.'\' means: '.$searchResult->meaning.' <br/> Example: '.$searchResult->example;
     } 
   }
-  
+
+
+  private static function populateDictionary(DictStore $dictStore, $slang = null, $definition = null, $example = null) 
+  {
+    if ($slang == null || $definition == null || $example == null) {
+      return "Not enough arguments!";
+    } else {
+      $dictionary = $dictStore->dictData;
+      $newSlang['slang'] = $slang;
+      $newSlang['description'] = $definition;
+      $newSlang['sample-sentence'] = $example;
+      array_push($dictionary, $newSlang);
+      return $dictionary;
+    }
+  }
 }
