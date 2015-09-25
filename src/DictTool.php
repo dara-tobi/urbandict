@@ -15,7 +15,7 @@ class DictTool
    * 
    * @return stdClass  $slang     Slang index, meaning and it's sample sentence        
    */
-  private static function find(DictStore $dictStore, String $needle)
+  private static function find(DictStore $dictStore, $needle)
   {
     $dictionary = $dictStore->dictData;
     $checkSlangExists = self::search($dictionary, $needle);
