@@ -1,10 +1,8 @@
 <?php
-
 namespace Dara\UrbanDict;
 
 include('src/DictTool.php');
 include('src/DictStore.php');
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,8 +53,7 @@ include('src/DictStore.php');
         echo "<hr />";
         echo 'Delete <br/>';
         $delete = DictTool::deleteSlang($dictionary,'tight');
-        var_dump($delete);
-       
+        var_dump($delete);  
       ?>
      </div>
    </div> 
