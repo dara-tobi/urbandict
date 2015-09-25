@@ -93,5 +93,20 @@ class DictTool
       return $dictStore;
     }
   }
- 
+  
+  /**
+   * Edit a given slang's details
+   *
+   * @param string $slang Slang to be edited
+   * 
+   * @return string Confirmation that the intended slang was edited
+   */
+  public static function editSlang(DictStore $dictStore, $slang, $newMeaning)
+  {
+    $dictCheck = self::find($dictStore, $slang);
+    if ($dictCheck !== false) {
+      $dictStore->dictData[$dictCheck->index]['description'] = $newMeaning;
+      return $dictStore;
+    }
+  } 
 }
