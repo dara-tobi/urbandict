@@ -51,4 +51,5 @@ class DictTool
       return '\''.$slang.'\' means: '.$searchResult->meaning.' <br/> Example: '.$searchResult->example;
     } 
   }
+  
 }
