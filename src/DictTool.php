@@ -75,5 +75,23 @@ class DictTool
       $dictStore = self::populateDictionary($dictStore, $slang, $definition, $example);
       return $dictStore;
     }
-  } 
+  }
+
+  /**
+   * Delete a given slang from the dictionary, along with it's definition
+   *
+   * @param string $slang Slang to be deleted
+   * 
+   * @return string Confirmation of deletion of slang intended to be deleted
+   *
+   */
+  public static function deleteSlang(DictStore $dictStore, $slang)
+  {
+    $dictCheck = self::find($dictStore, $slang);
+    if (self::find($dictStore, $slang) !== false) {
+      unset($dictStore->dictData[$dictCheck->index]);
+      return $dictStore;
+    }
+  }
+ 
 }
