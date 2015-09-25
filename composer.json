@@ -26,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "League\\UrbanDict\\": "src"
+            "Dara\\UrbanDict\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "League\\UrbanDict\\Test\\": "tests"
+            "Dara\\UrbanDict\\Test\\": "tests"
         }
     },
     "scripts": {
