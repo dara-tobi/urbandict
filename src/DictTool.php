@@ -7,18 +7,15 @@ class DictTool
 {
   use FindSlang;
   /**
-   * Add a new slang to the Dictionary
-   *
-   * @param string $slang Slang to be added to the dictionary
-   *
-   * @param string $definition Definiton of the slang
-   *
-   * @param string $example Example useage of the slang
-   *
-   * @return string Confirmation of addition of slang intended to be added
+   * Check if a slang exists
+   * 
+   * @param  DictStore $dictStore An instance of the DictStore class
+   * 
+   * @param  String    $needle    Slang to be located
+   * 
+   * @return stdClass  $slang     Slang index, meaning and it's sample sentence        
    */
-  
-  private static function find(DictStore $dictStore, $needle)
+  private static function find(DictStore $dictStore, String $needle)
   {
     $dictionary = $dictStore->dictData;
     $checkSlangExists = self::search($dictionary, $needle);
@@ -38,21 +35,37 @@ class DictTool
   /**
    * Display a slang meaning, and it's sample sentence, from the dictionary
    *
-   * @param string $slang Slang whose definition is being sought for
+   * @param DictStore $dictStore 
+   *
+   * @param  String   $slang  Slang whose definition is being sought for
    * 
-   * @return string Definition of the slang being searched for
+   * @return String   $result Definition of the slang being searched for
    */
   public static function getSlang(DictStore $dictStore, $slang = null)
   {
-    $searchResult =  self::find($dictStore, $slang);
+    $searchResult = self::find($dictStore, $slang);
     if ($searchResult === false) {
-      return 'No definition found for \''.$slang.'\'';
+      $result =  'No definition found for \''.$slang.'\'';
+      return $result;
     } else {
-      return '\''.$slang.'\' means: '.$searchResult->meaning.' <br/> Example: '.$searchResult->example;
+      $result =  '\''.$slang.'\' means: '.$searchResult->meaning.' <br/> Example: '.$searchResult->example;
+      return $result;
     } 
   }
 
-
+  /**
+   * Insert a new Slang into the dictData array of the DictStore class
+   * 
+   * @param  DictStore $dictStore  
+   * 
+   * @param  String    $slang       Slang to be added
+   * 
+   * @param  String    $definition  Definition of the slang
+   * 
+   * @param  String    $example     Example sentence of the slang's usage
+   * 
+   * @return Array     $dictionary  Modified array with the new slang added
+   */
   private static function populateDictionary(DictStore $dictStore, $slang = null, $definition = null, $example = null) 
   {
     if ($slang == null || $definition == null || $example == null) {
@@ -67,6 +80,19 @@ class DictTool
     }
   }
 
+  /**
+   * Add a new slang to the Dictionary
+   *
+   * @param  DictStore $dictStore  An instance of the DictStore class
+   * 
+   * @param  String    $slang      Slang to be added to the dictionary
+   *
+   * @param  String    $definition Definiton of the slang
+   *
+   * @param  String    $example    Example useage of the slang
+   *
+   * @return DictStore $dictStore  DictStore instance to which the intended slang has been added
+   */
   public static function addSlang(DictStore $dictStore, $slang = null, $definition = null, $example = null)
   {
     if (self::find($dictStore, $slang) !== false) {
@@ -80,9 +106,11 @@ class DictTool
   /**
    * Delete a given slang from the dictionary, along with it's definition
    *
-   * @param string $slang Slang to be deleted
+   * @param  DictStore $dictStore 
    * 
-   * @return string Confirmation of deletion of slang intended to be deleted
+   * @param  String    $slang     Slang to be deleted
+   * 
+   * @return DictStore $dictStore DictStore instance from which the intended slang has been deleted
    *
    */
   public static function deleteSlang(DictStore $dictStore, $slang)
@@ -97,9 +125,13 @@ class DictTool
   /**
    * Edit a given slang's details
    *
-   * @param string $slang Slang to be edited
+   * @param  DictStore $dictStore 
+   *
+   * @param  String    $slang Slang to be edited
+   *
+   * @param  String    $newMeaning New definition to be assigned to the slang
    * 
-   * @return string Confirmation that the intended slang was edited
+   * @return DictStore $dictStore DictStore instance in which the intended slang has been edited
    */
   public static function editSlang(DictStore $dictStore, $slang, $newMeaning)
   {
