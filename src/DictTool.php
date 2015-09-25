@@ -66,4 +66,14 @@ class DictTool
       return $dictionary;
     }
   }
+
+  public static function addSlang(DictStore $dictStore, $slang = null, $definition = null, $example = null)
+  {
+    if (self::find($dictStore, $slang) !== false) {
+      return 'Slang already exists';
+    } else {
+      $dictStore = self::populateDictionary($dictStore, $slang, $definition, $example);
+      return $dictStore;
+    }
+  } 
 }
