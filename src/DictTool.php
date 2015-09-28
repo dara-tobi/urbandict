@@ -1,8 +1,6 @@
 <?php
 namespace Dara\UrbanDict;
 
-include('FindSlang.php');
-
 class DictTool
 {
   use FindSlang;
@@ -15,22 +13,7 @@ class DictTool
    * 
    * @return stdClass  $slang     Slang index, meaning and it's sample sentence        
    */
-  private function find(DictStore $dictStore, $needle)
-  {
-    $dictionary = $dictStore->dictData;
-    $checkSlangExists = $this->search($dictionary, $needle);
-
-    if ($checkSlangExists === false) {
-      return false;
-    } else {
-      $slangIndex = $checkSlangExists;
-      $slang = new \stdClass();
-      $slang->index = $slangIndex;
-      $slang->meaning = $dictionary[$slangIndex]['description'];
-      $slang->example = $dictionary[$slangIndex]['sample-sentence'];
-      return $slang;
-    }
-  }
+  
 
   /**
    * Display a slang meaning, and it's sample sentence, from the dictionary
@@ -119,6 +102,8 @@ class DictTool
     if ($this->find($dictStore, $slang) !== false) {
       unset($dictStore->dictData[$dictCheck->index]);
       return $dictStore;
+    } else {
+      return 'Could not find '.$slang;
     }
   }
   
@@ -131,14 +116,17 @@ class DictTool
    *
    * @param  String    $newMeaning New definition to be assigned to the slang
    * 
-   * @return DictStore $dictStore DictStore instance in which the intended slang has been edited
+   * @return array     $editResult Modified slanga along with its new meaning
    */
   public function editSlang(DictStore $dictStore, $slang, $newMeaning)
   {
     $dictCheck = $this->find($dictStore, $slang);
     if ($dictCheck !== false) {
       $dictStore->dictData[$dictCheck->index]['description'] = $newMeaning;
-      return $dictStore;
+      $editResult = $dictStore->dictData[$dictCheck->index];
+    } else {
+      $editResult = 'Could not find '.$slang;
     }
+    return $editResult;
   } 
 }

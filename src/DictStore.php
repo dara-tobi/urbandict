@@ -3,6 +3,7 @@ namespace Dara\UrbanDict;
 
 class DictStore
 {
+  use FindSlang;
   /**
    * Static array of Dictionary data
    *

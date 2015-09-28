@@ -3,7 +3,7 @@ namespace Dara\UrbanDict;
 
 Trait FindSlang
 {
-  private static function search($array, $needle)
+  public function getIndex($array, $needle)
   {
     $arr = $array;
     $valueExists = false;
@@ -19,6 +19,23 @@ Trait FindSlang
       return false;
     } else {
       return $index;
+    }
+  }
+
+  public function find(DictStore $dictStore, $needle)
+  {
+    $dictionary = $dictStore->dictData;
+    $checkSlangExists = $this->getIndex($dictionary, $needle);
+
+    if ($checkSlangExists === false) {
+      return false;
+    } else {
+      $slangIndex = $checkSlangExists;
+      $slang = new \stdClass();
+      $slang->index = $slangIndex;
+      $slang->meaning = $dictionary[$slangIndex]['description'];
+      $slang->example = $dictionary[$slangIndex]['sample-sentence'];
+      return $slang;
     }
   }
 }

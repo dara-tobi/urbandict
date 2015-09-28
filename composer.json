@@ -27,7 +27,8 @@
     "autoload": {
         "psr-4": {
             "Dara\\UrbanDict\\": "src"
-        }
+        },
+        "classmap": ["src"]
     },
     "autoload-dev": {
         "psr-4": {

@@ -1,8 +1,11 @@
 <?php
 namespace Dara\UrbanDict;
 
-include('src/DictTool.php');
-include('src/DictStore.php');
+require_once 'vendor/autoload.php';
+use Dara\UrbanDict\DictTool;
+use Dara\UrbanDict\DictStore;
+use Dara\UrbanDict\DictRank;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,28 +38,34 @@ include('src/DictStore.php');
   </head>
   <body>
 
-   <div id="container">
-     <div id="workspace">
+    <div id="container">
+      <div id="workspace">
       <?php
-        $handler = new DictTool();
+        // $handler = new DictTool();
+        // $dictionary = new DictStore();
+        // echo 'Get  <br/>';
+        // $get = $handler->getSlang($dictionary,'crash');
+        // var_dump($get);
+        // echo "<hr />";
+        // echo 'Add <br/>';
+        // $add = $handler->addSlang($dictionary,'jump','To run from the police','Tunde will jump despite the warwning from the judge');
+        // var_dump($add);
+        // echo "<hr />";
+        // echo 'Edit <br/>';
+        // $edit = $handler->editSlang($dictionary,'tight','A very impressive performance');
+        // var_dump($edit);
+        // echo "<hr />";
+        // echo 'Delete <br/>';
+        // $delete = $handler->deleteSlang($dictionary,'tight');
+        // var_dump($delete);  
+        
         $dictionary = new DictStore();
-        echo 'Get  <br/>';
-        $get = $handler->getSlang($dictionary,'crash');
-        var_dump($get);
-        echo "<hr />";
-        echo 'Add <br/>';
-        $add = $handler->addSlang($dictionary,'jump','To run from the police','Tunde will jump despite the warwning from the judge');
-        var_dump($add);
-        echo "<hr />";
-        echo 'Edit <br/>';
-        $edit = $handler->editSlang($dictionary,'tight','A very impressive performance');
-        var_dump($edit);
-        echo "<hr />";
-        echo 'Delete <br/>';
-        $delete = $handler->deleteSlang($dictionary,'tight');
-        var_dump($delete);  
+        $ranker = new DictRank($dictionary);
+        $find = $ranker->rank('crash');
+        //var_dump($find);
+
       ?>
-     </div>
-   </div> 
+      </div>
+    </div> 
   </body>
 </html>
