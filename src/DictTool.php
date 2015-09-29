@@ -1,19 +1,11 @@
 <?php
+
 namespace Dara\UrbanDict;
 
 class DictTool
 {
+
     use FindSlang;
-    /**
-     * Check if a slang exists
-     * 
-     * @param  DictStore $dictStore An instance of the DictStore class
-     * 
-     * @param  String    $needle    Slang to be located
-     * 
-     * @return stdClass  $slang     Slang index, meaning and it's sample sentence        
-     */
-    
 
     /**
      * Display a slang meaning, and it's sample sentence, from the dictionary
@@ -28,10 +20,10 @@ class DictTool
     {
         $searchResult = $this->find($dictStore, $slang);
         if ($searchResult === false) {
-            $result =  'No definition found for \''.$slang.'\'';
+            $result =  'No definition found for that slang';
             return $result;
         } else {
-            $result =  '\''.$slang.'\' means: '.$searchResult->meaning.' <br/> Example: '.$searchResult->example;
+            $result =  '\''.$slang.'\' means: '.$searchResult['meaning'].' <br/> Example: '.$searchResult['example'];
             return $result;
         } 
     }
@@ -100,7 +92,7 @@ class DictTool
     {
         $dictCheck = $this->find($dictStore, $slang);
         if ($this->find($dictStore, $slang) !== false) {
-            unset($dictStore->dictData[$dictCheck->index]);
+            unset($dictStore->dictData[$dictCheck['index']]);
             return $dictStore;
         } else {
             return 'Could not find '.$slang;
@@ -122,10 +114,10 @@ class DictTool
     {
         $dictCheck = $this->find($dictStore, $slang);
         if ($dictCheck !== false) {
-            $dictStore->dictData[$dictCheck->index]['description'] = $newMeaning;
-            $editResult = $dictStore->dictData[$dictCheck->index];
+            $dictStore->dictData[$dictCheck['index']]['description'] = $newMeaning;
+            $editResult = $dictStore->dictData[$dictCheck['index']];
         } else {
-            $editResult = 'Could not find '.$slang;
+            $editResult = 'Could not find that slang';
         }
         return $editResult;
     } 

@@ -1,40 +1,39 @@
 <?php
 namespace Dara\UrbanDict;
 
-Trait FindSlang
+trait FindSlang
 {
-    public function getIndex($array, $needle)
+
+    public function getIndex($dictionaryArray, $slang)
     {
-        $arr = $array;
+        $arr = $dictionaryArray;
         $valueExists = false;
-        $needle = strtolower($needle);
+        $slang = strtolower($slang);
+
         for ($i = 0; $i < count($arr); $i++) {
-            if ($needle === strtolower($arr[$i]['slang'])) {
+            if ($slang === strtolower($arr[$i]['slang'])) {
                 $valueExists = true;
                 $index = $i;
                 break;
             }
         }
-        if ($valueExists == false) {
-            return false;
-        } else {
-           return $index;
-        }
+
+        return ($valueExists == false) ? false : $index;
     }
 
-    public function find(DictStore $dictStore, $needle)
+    public function find(DictStore $dictStore, $slang)
     {
         $dictionary = $dictStore->dictData;
-        $checkSlangExists = $this->getIndex($dictionary, $needle);
+        $checkSlangExists = $this->getIndex($dictionary, $slang);
 
         if ($checkSlangExists === false) {
             return false;
         } else {
             $slangIndex = $checkSlangExists;
-            $slang = new \stdClass();
-            $slang->index = $slangIndex;
-            $slang->meaning = $dictionary[$slangIndex]['description'];
-            $slang->example = $dictionary[$slangIndex]['sample-sentence'];
+            $slang = [];
+            $slang['index'] = $slangIndex;
+            $slang['meaning'] = $dictionary[$slangIndex]['description'];
+            $slang['example'] = $dictionary[$slangIndex]['sample-sentence'];
             return $slang;
         }
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Dara\UrbanDict;
 
 class DictStore
@@ -7,7 +8,7 @@ class DictStore
     /**
      * Static array of Dictionary data
      *
-     * @var array(array("key" => "value"))
+     * @var $array
      */
     public $dictData = [
           [

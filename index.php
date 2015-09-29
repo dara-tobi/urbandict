@@ -1,4 +1,5 @@
 <?php
+
 namespace Dara\UrbanDict;
 
 require_once 'vendor/autoload.php';
@@ -62,7 +63,7 @@ use Dara\UrbanDict\DictRank;
         $dictionary = new DictStore();
         $ranker = new DictRank($dictionary);
         $find = $ranker->rank('crash');
-        var_dump($find);
+        
 
       ?>
       </div>
