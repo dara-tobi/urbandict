@@ -64,7 +64,7 @@ $add = $dictTool->addSlang($dictionary, 'jump', 'To run from the police', 'Tunde
 $edit = $dictTool->editSlang($dictionary,'tight','A very impressive performance');
 ``````
 
--Delete a slang from the dictionary
+- Delete a slang from the dictionary
 
 ``````
 $delete = $dictTool->deleteSlang($dictionary,'tight');
