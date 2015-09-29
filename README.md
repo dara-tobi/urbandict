@@ -1,12 +1,12 @@
-#Urban Dictionary
-The urban dictionary is a compilation of city
+#UrbanDict
+UrbanDict is a compilation of common
 slangs. It is a simple project that demonstrates
 the use of simple and basic programming concepts.
 
 #Design
 
 Classes
- - DictStire: The main dictionary
+ - DictStore: The main dictionary
  - DictTool: The data access layer, responsible for
    performing CRUD operations on the dictionary.
  - DictRank: Returns a word count in descending order of
@@ -28,7 +28,7 @@ Classes
 - To install this package, PHP 5.5+ and Composer are required
 
 ````bash
-composer require verem/dictionary
+composer require `dara/urbandict`
 ``````
 
 #usage
@@ -55,13 +55,13 @@ $meaning = $dictTool->getSlang($dictionary,'crash');
 - Add a slang to the dictionary
 
 ``````
-$dictTool->addSlang($dictionary, 'jump', 'To run from the police', 'Tunde will jump despite the warning from the judge');
+$add = $dictTool->addSlang($dictionary, 'jump', 'To run from the police', 'Tunde will jump despite the warning from the judge');
 ``````
 
 - Edit a slang in the dictionary
 
 ``````
-$dictTool->editSlang($dictionary,'tight','A very impressive performance');
+$edit = $dictTool->editSlang($dictionary,'tight','A very impressive performance');
 ``````
 
 -Delete a slang from the dictionary
