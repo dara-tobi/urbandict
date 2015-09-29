@@ -1,4 +1,5 @@
 <?php
+
 namespace Dara\UrbanDict\Test;
 
 use Dara\UrbanDict\DictTool;
@@ -6,6 +7,7 @@ use Dara\UrbanDict\DictStore;
 
 class DictToolTest extends \PHPUnit_Framework_TestCase
 {
+
   protected $dictStore;
   protected $dictTool;
 
@@ -26,20 +28,22 @@ class DictToolTest extends \PHPUnit_Framework_TestCase
   public function testGetSlang()
   {
     $getSlang = $this->dictTool->getSlang($this->dictStore, 'dara');
-    $this->assertStringStartsWith('No', $getSlang);
+    $this->assertNotContains('dara', $getSlang);
+
+
 
     $getSlang = $this->dictTool->getSlang($this->dictStore, 'tight');
-    $this->assertStringStartsWith('\'', $getSlang);
+    $this->assertContains('tight', $getSlang);
   }
 
   public function testEditSlang()
   {
     $newMeaning = 'New meaning';
     $editSlang = $this->dictTool->editSlang($this->dictStore, 'dara', $newMeaning);
-    $this->assertStringStartsWith('Could', $editSlang);
+    $this->assertNotcontains('dara', $editSlang);
 
     $editSlang = $this->dictTool->editSlang($this->dictStore, 'tight', $newMeaning);
-    $this->assertStringStartsWith($newMeaning, $editSlang['description']);
+    $this->assertContains($newMeaning, $editSlang['description']);
   }
 
   public function testDeleteSlang()
@@ -50,4 +54,5 @@ class DictToolTest extends \PHPUnit_Framework_TestCase
     $deleteSlang = $this->dictTool->deleteSlang($this->dictStore, 'tight');
     $this->assertCount(2, $deleteSlang->dictData);
   }
+
 }
