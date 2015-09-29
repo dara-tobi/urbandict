@@ -27,7 +27,7 @@ use Dara\UrbanDict\DictRank;
       }
       #workspace {
         background: #beaeae;
-        /*height: 580px;*/
+        min-height: 580px;
         color: #004;
         padding: 20px 50px 20px 50px;
         font-family: sans-serif;
@@ -41,28 +41,28 @@ use Dara\UrbanDict\DictRank;
     <div id="container">
       <div id="workspace">
       <?php
-        // $handler = new DictTool();
-        // $dictionary = new DictStore();
-        // echo 'Get  <br/>';
-        // $get = $handler->getSlang($dictionary,'crash');
-        // var_dump($get);
-        // echo "<hr />";
-        // echo 'Add <br/>';
-        // $add = $handler->addSlang($dictionary,'jump','To run from the police','Tunde will jump despite the warwning from the judge');
-        // var_dump($add);
-        // echo "<hr />";
-        // echo 'Edit <br/>';
-        // $edit = $handler->editSlang($dictionary,'tight','A very impressive performance');
-        // var_dump($edit);
-        // echo "<hr />";
-        // echo 'Delete <br/>';
-        // $delete = $handler->deleteSlang($dictionary,'tight');
-        // var_dump($delete);  
+        $handler = new DictTool();
+        $dictionary = new DictStore();
+        echo 'Get  <br/>';
+        $get = $handler->getSlang($dictionary,'crash');
+        var_dump($get);
+        echo "<hr />";
+        echo 'Add <br/>';
+        $add = $handler->addSlang($dictionary,'jump','To run from the police','Tunde will jump despite the warwning from the judge');
+        var_dump($add);
+        echo "<hr />";
+        echo 'Edit <br/>';
+        $edit = $handler->editSlang($dictionary,'tight','A very impressive performance');
+        var_dump($edit);
+        echo "<hr />";
+        echo 'Delete <br/>';
+        $delete = $handler->deleteSlang($dictionary,'tight');
+        var_dump($delete);  
         
         $dictionary = new DictStore();
         $ranker = new DictRank($dictionary);
         $find = $ranker->rank('crash');
-        //var_dump($find);
+        var_dump($find);
 
       ?>
       </div>
