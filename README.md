@@ -18,8 +18,8 @@ Classes
  unit test on the classes. The TDD principle has been
  employed to make the application robust
  
- Run this on bash to execute the tests
- ```````bash
+ Run this in your terminal to execute the tests
+ ```````
  /vendor/bin/phpunit
 `````````
 
@@ -27,11 +27,11 @@ Classes
 
 - To install this package, PHP 5.5+ and Composer are required
 
-````bash
+``````
 composer require `dara/urbandict`
 ``````
 
-#usage
+#Usage
 
 
 - Instantiating the Dictionary
