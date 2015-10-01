@@ -21,20 +21,26 @@ trait FindSlang
         return ($valueExists == false) ? false : $index;
     }
 
+    public function returnSlangDetails($dictionary, $slangIndex)
+    {
+        $slangDetails = [];
+        $slangDetails['index'] = $slangIndex;
+        $slangDetails['meaning'] = $dictionary[$slangIndex]['description'];
+        $slangDetails['example'] = $dictionary[$slangIndex]['sample-sentence'];
+
+        return $slangDetails;
+    }
+
     public function find(DictStore $dictStore, $slang)
     {
         $dictionary = $dictStore->dictData;
         $checkSlangExists = $this->getIndex($dictionary, $slang);
 
-        if ($checkSlangExists === false) {
+        if (!$checkSlangExists) {
             return false;
         } else {
             $slangIndex = $checkSlangExists;
-            $slang = [];
-            $slang['index'] = $slangIndex;
-            $slang['meaning'] = $dictionary[$slangIndex]['description'];
-            $slang['example'] = $dictionary[$slangIndex]['sample-sentence'];
-            return $slang;
+            return $this->returnSlangDetails($dictionary, $slangIndex);
         }
     }
 }

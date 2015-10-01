@@ -11,6 +11,7 @@ class DictRank
     {
         $this->dictStore = $dictStore;
     }
+
     public function rank($slang)
     {
         $slang = $this->find($this->dictStore, $slang);
@@ -20,8 +21,11 @@ class DictRank
         array_multisort($rank);
         $rank = array_reverse($rank);
 
+        $rankArray = [];
         foreach ($rank as $key => $value) {
-            var_export($key." => ".$value."<br />");
+            array_push($rankArray, $key." => ".$value);
         }
+        
+        return $rankArray;
     }
 }
