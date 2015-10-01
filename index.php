@@ -3,11 +3,13 @@
 namespace Dara\UrbanDict;
 
 require_once 'vendor/autoload.php';
+
 use Dara\UrbanDict\DictTool;
 use Dara\UrbanDict\DictStore;
 use Dara\UrbanDict\DictRank;
 
 ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -53,18 +55,18 @@ use Dara\UrbanDict\DictRank;
         var_dump($add);
         echo "<hr />";
         echo 'Edit <br/>';
-        $edit = $handler->editSlang($dictionary,'tight','A very impressive performance');
+        $edit = $handler->editSlang($dictionary,'crash','A very impressive performance');
         var_dump($edit);
         echo "<hr />";
         echo 'Delete <br/>';
-        $delete = $handler->deleteSlang($dictionary,'tight');
-        var_dump($delete);  
-        
+        $delete = $handler->deleteSlang($dictionary,'crash');
+        var_dump($delete);
+        echo "<hr />";
+        echo 'Rank <br/>';
         $dictionary = new DictStore();
         $ranker = new DictRank($dictionary);
-        $find = $ranker->rank('crash');
-        
-
+        $getRank = $ranker->rank('crash');
+        var_dump($getRank);
       ?>
       </div>
     </div> 
