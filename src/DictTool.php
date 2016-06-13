@@ -82,7 +82,7 @@ class DictTool
      * 
      * @param  String    $slang      Slang to be added to the dictionary
      *
-     * @param  String    $definition Definiton of the slang
+     * @param  String    $definition Definition of the slang
      *
      * @param  String    $example    Example useage of the slang
      *
